@@ -1,0 +1,29 @@
+<apex:page controller="SFOauthLoginController">
+    <apex:form >
+    <apex:pageBlock title="Collage Details">
+        <apex:pageblockSection title="Collage Information">
+            <apex:outputText >{!token}</apex:outputText> 
+            
+        </apex:pageblockSection>
+        <apex:pageBlockButtons >
+            <apex:commandButton value="Login" action="{!callLogin}"/>
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+        
+        <apex:commandLink onclick="popupwindow" title="Click"> Click </apex:commandLink>
+<apex:commandButton value="Generate Report" onclick="popupwindow"/>
+    </apex:form><br/><br/>
+    <input type="button" value="Login Developer Account" onclick="openwindow()"/>
+    <script type="text/javascript">
+    console.log(window.location.href);
+    function popupwindow(){
+        //window.top.location.href = 'https://www.google.com/';
+        var newwindow = window.open('https://www.google.com/','_self'); 
+        //var newwindow = window.open("", "", "width=200,height=100");
+        
+     }
+    function openwindow(){
+        var newwindow = window.open("{!token}","", "width=200,height=300"); 
+    }
+    </script>
+</apex:page>

@@ -1,0 +1,9 @@
+@import 'c/commonCss';
+
+.title-bg{
+    width:50rem;
+    background-color: rgb(243, 242, 242);
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin:0px;
+}

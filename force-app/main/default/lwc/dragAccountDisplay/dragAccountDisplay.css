@@ -1,0 +1,11 @@
+.dummy{
+	color : black;
+}
+
+.div-box{
+	border-radius: 5px;
+    border: .5px solid turquoise;
+    box-shadow: 0 4px 4px 0 #40cae0;
+	margin-bottom: 5px;
+	padding: 3px;
+}

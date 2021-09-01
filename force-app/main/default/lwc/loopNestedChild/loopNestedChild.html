@@ -1,0 +1,36 @@
+<template>
+    <lightning-card padding="around-none">
+        <div slot="actions" class="slds-p_around-none">
+            <lightning-button-icon variant="bare" size="small" icon-name={utilityIconTop} title={actionLabel} onclick={actionHandler}></lightning-button-icon>
+        </div>
+        
+        <div class={actionBodyClass}>
+            
+            Card Body is here!! (custom component)
+            <lightning-card padding="around-none">
+                <div slot="actions">
+                    <lightning-button-icon padding="around-none" variant="bare" size="small" icon-name={utilityIconInner} title="expand" onclick={showDataHandler}></lightning-button-icon>
+                </div>
+                <template if:true={showhiderooms}>
+            <div class="slds-border_top"></div>
+                <lightning-layout class="container" padding="around-none">
+                    <lightning-layout-item size="12" padding="around-none">
+                        <div><span>Normal : </span> <span>{roomInformation.normal}</span></div>
+                        <div class="slds-clear-fix"></div>
+                        <div><span>Premium : </span> <span>{ roomInformation.premium}</span></div>
+                        <div class="slds-clear-fix"></div>
+                        <div><span>Luxury : </span> <span>{roomInformation.luxury}</span></div>
+                        <div class="slds-clear-fix"></div>
+                    </lightning-layout-item>
+                    
+                </lightning-layout>
+                <div class="slds-border_top">
+                </div>
+            </template>
+        </lightning-card>
+        <div slot="footer">
+            <lightning-badge label="Footer Tag"></lightning-badge>
+        </div>
+        </div>
+    </lightning-card>
+</template>

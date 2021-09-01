@@ -1,0 +1,58 @@
+<template>
+    <lightning-card class="lgc-bg ">
+        
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12" >
+                <div class="custom-box slds-align_absolute-center" style="height:3rem"><div slot="title">Reading URL Parameters</div></div>
+            </lightning-layout-item>
+            
+        </lightning-layout>
+        <div class="slds-var-p-around_medium">
+        <p>lang=en_US&type=test-type&id=000000000001</p>
+        <p>{urlId}</p>
+        <p>{urlLanguage}</p>
+        <p>{urlType}</p></div>
+    </lightning-card>
+    <lightning-card title="OAuth Flow and Endpoint URL Details" class="lgc-bg ">      
+            <c-expand-collapse-cmp title-lc="STEPS"> 
+            <span slot="innerElement">
+                <div class="slds-m-around_medium">
+                <ol style="list-style: devanagari;">
+                    <li >   
+                        <lightning-tile class="title-bg title-bg-border wrap-word-break"  >
+                            <section><h3>Request an Authorization Code</h3></section>
+                            <lightning-formatted-url value="https://help.salesforce.com/articleView?id=remoteaccess_oauth_web_server_flow.htm&type=5#request_auth_code" tooltip="Request an Authorization Code" target="_blank"></lightning-formatted-url>
+                        </lightning-tile>
+                    </li>
+                    <li >   
+                        <lightning-tile class="title-bg title-bg-border wrap-word-break"  ><section><h3>User Authenticates and Authorizes Access</h3></section>
+                            <lightning-formatted-url value="https://help.salesforce.com/articleView?id=remoteaccess_oauth_web_server_flow.htm&type=5#grant_access_to_app_title" tooltip="User Authenticates and Authorizes Access"  target="_blank"></lightning-formatted-url>
+                        </lightning-tile>
+                    </li>
+                    <li >   
+                        <lightning-tile class="title-bg title-bg-border wrap-word-break"  ><section><h3>Salesforce Grants Authorization Code</h3></section>
+                            <lightning-formatted-url value="https://help.salesforce.com/articleView?id=remoteaccess_oauth_web_server_flow.htm&type=5#grant_auth_code" tooltip="Salesforce Grants Authorization Code"  target="_blank" ></lightning-formatted-url>
+                        </lightning-tile>
+                    </li>
+                    <li >   
+                        <lightning-tile class="title-bg title-bg-border wrap-word-break"  ><section><h3>Request an Access Token</h3></section>
+                            <lightning-formatted-url value="https://help.salesforce.com/articleView?id=remoteaccess_oauth_web_server_flow.htm&type=5#request_access_token" tooltip="Request an Access Token"  target="_blank" ></lightning-formatted-url>
+                        </lightning-tile>
+                    </li>
+                    <li >   
+                        <lightning-tile class="title-bg title-bg-border wrap-word-break"  ><section><h3>Salesforce Grants an Access Token</h3></section>
+                            <lightning-formatted-url value="https://help.salesforce.com/articleView?id=remoteaccess_oauth_web_server_flow.htm&type=5#grant_access_token_title" tooltip="Salesforce Grants an Access Token" target="_blank" ></lightning-formatted-url> 
+                        </lightning-tile>
+                    </li>
+                    <li >   
+                        <lightning-tile class="title-bg title-bg-border wrap-word-break"  >
+                            <p>End Point URLS</p>
+                            <p>Authorization: https://login.salesforce.com/services/oauth2/authorize</p>
+                            <p>Token: https://login.salesforce.com/services/oauth2/token</p>
+                        </lightning-tile>
+                    </li>
+                </ol></div>
+            </span></c-expand-collapse-cmp>
+        
+    </lightning-card>
+</template>

@@ -1,0 +1,92 @@
+<template>
+<div class="slds-box parent-div"> <h3 >Layout and Layout Items</h3>
+    <div class="expColp">
+        <lightning-button-icon variant="bare" size="small" icon-name={utilityIconTop} title={actionLabel} onclick={actionHandler}></lightning-button-icon>
+    </div>
+    <template if:true={showExpanded} >
+<lightning-card title="Check LDS in List" class="slds-m-around_small lwc-bg">
+
+    <lightning-layout class="slds-m-around_small container">
+
+                <lightning-layout-item class="slds-p_right-small" size="10" medium-device-size="8" small-device-size="6">
+                     LWC LDS CHECK 12!
+                </lightning-layout-item>
+                <lightning-layout-item size="2" medium-device-size="4" small-device-size="6" >
+                    <lightning-button-icon icon-name="utility:add" class="slds-p-right_x-small slds-float_right"></lightning-button-icon>
+                    <lightning-button-icon icon-name="utility:delete" class="slds-p-right_x-small  slds-float_right"></lightning-button-icon>
+                </lightning-layout-item>
+    </lightning-layout>
+</lightning-card>
+
+<lightning-card title="Check In Span" class="slds-m-around_xxx-small">
+    <div slot="actions">
+        <lightning-button-icon icon-name="utility:add" class="slds-p-right_xxx-small"></lightning-button-icon>
+        <lightning-button-icon icon-name="utility:delete"  class="slds-p-right_xxx-small"></lightning-button-icon>
+    </div>
+    <p class="slds-p-horizontal_small"><lightning-badge label="LWC LDS CHECK"></lightning-badge></p>
+</lightning-card>
+<lightning-card title="Nested Layout">
+    <div class="c-container container slds-m-around_small">
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item padding="around-small" size="12">
+                <div class="page-section page-header">
+                    <h2>Header</h2>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="12">
+                <lightning-layout>
+                    <lightning-layout-item padding="around-small" size="3">
+                        <div class="page-section page-right">
+                            <h2>Left Sidebar</h2>
+                            <p>Lorem ipsum dolor sit amet, culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="around-small" size="6">
+                        <div class="page-section page-main">
+                            <h2>Main</h2>
+                            <p>Donec viverra pellentesque aliquet. Praesent quis tristique mauris, ac tincidunt ante.
+                                Nulla lectus nisi, .
+                            </p>
+                            <p>Mauris cursus felis elementum ipsum placerat, in maximus justo pretium. Nam nec sapien
+                                maximus justo .
+                            </p>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="around-small" size="3">
+                        <div class="page-section page-right">
+                            <h2>Right Sidebar</h2>
+                            <ul>
+                                <li><a href="#">Archive 1</a>
+                                </li>
+                                <li><a href="#">Archive 2</a>
+                                </li>
+                                <li><a href="#">Archive 3</a>
+                                </li>
+                                <li><a href="#">Archive 4</a>
+                                </li>
+                                <li><a href="#">Archive 5</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="auto" padding="around-small" size="12">
+                <div class="page-footer page-section">
+                    <h2>Footer</h2>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</lightning-card>
+    <div class="slds-grid lwc-bg">
+        <div slot="actions">
+            <lightning-button-icon icon-name="utility:add" class="slds-p-right_xxx-small"></lightning-button-icon>
+            <lightning-button-icon icon-name="utility:delete"  class="slds-p-right_xxx-small"></lightning-button-icon>
+        </div>
+        <p class="slds-p-horizontal_small"><lightning-badge label="LWC LDS CHECK"></lightning-badge></p>
+    </div>
+    </template>
+</div>
+</template>

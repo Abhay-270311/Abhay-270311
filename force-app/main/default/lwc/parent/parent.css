@@ -1,0 +1,5 @@
+@import 'c/commonCss';
+/*override class in commonCss file*/
+.parent-div{
+    background-color: coral;
+}

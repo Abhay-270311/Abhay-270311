@@ -1,0 +1,23 @@
+<!-- This will display list of Accounts -->
+<template>
+    <lightning-card  variant="Narrow"  title="Account List" icon-name="standard:account">
+    <lightning-layout multiple-rows>
+        <template if:true={accList} for:each={accList} for:item="accRecord">
+            <lightning-layout-item key={accRecord.Id} size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3" >
+            <div class="custom-box">{accRecord.Name}</div>
+        </lightning-layout-item>
+        <lightning-layout-item key={accRecord.Id} size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3">
+            <div class="custom-box">{accRecord.Status}</div>
+        </lightning-layout-item>
+        <lightning-layout-item key={accRecord.Id} size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3">
+            <div class="custom-box">{accRecord.Email}</div>
+        </lightning-layout-item>
+        <lightning-layout-item key={accRecord.Id} size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3">
+            <div class="custom-box">{accRecord.Website}</div>
+        </lightning-layout-item>
+        </template>
+        
+    </lightning-layout>
+   
+    </lightning-card>
+</template>

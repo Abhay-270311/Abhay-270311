@@ -1,0 +1,36 @@
+<apex:page controller="InfoTrails">
+    Welcome!
+    <apex:form >
+    <apex:pageBlock title="Collage Details">
+		<apex:pageblockSection title="Collage Information">
+			<!--<apex:inputField value="{!getToken}"/> -->
+			
+		</apex:pageblockSection>
+		<apex:pageBlockButtons >
+			<apex:commandButton value="Save Collage" action="{!save}"/>
+		</apex:pageBlockButtons>
+	</apex:pageBlock>
+    </apex:form>
+    <apex:form >
+        <p>
+            {!str}
+        </p>
+        <apex:outputText > Welcome!!!</apex:outputText><p>
+        Do you want to check this feature in your Org? 
+        </p>
+        <a href="https://account.box.com/api/oauth2/authorize?response_type=code&client_id=7eyaaxpy6byao53cgafl0yhindl2391j&redirect_uri=https://spartancode-dev-ed--c.visualforce.com/apex/InfoTrails" >Login to get Code</a>
+    <p>
+        <apex:outputLink value="https://api.box.com/oauth2/token?client_id=7eyaaxpy6byao53cgafl0yhindl2391j&redirect_uri=https://spartancode-dev-ed--c.visualforce.com/apex/InfoTrails&response_type=token">Login to get Access Token</apex:outputLink>
+        </p>
+        <p>
+            
+        </p>
+       
+   	<p>
+        Google SpreadSheet
+        </p>
+        <p>
+        <a href="https://login.salesforce.com/services/oauth2/authorize?client_id=3MVG9d8..z.hDcPKKDcq_EreLwR5D7Li5QfcVXIYErV1Cb5pFnF6YVEW2GQi0r51ezhhpUsXZYifpJUcArtsj&redirect_uri=https://siteauth-developer-edition.ap5.force.com/auth123&response_type=code" >Login to get Code</a>
+        </p>	
+    </apex:form>
+</apex:page>

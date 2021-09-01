@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title={titleLc}>
+        <div slot="actions">
+            <lightning-button-icon variant="brand" size="small" icon-name={utilityIconTop} onclick={actionHandler}></lightning-button-icon>
+        </div>
+        <template if:true={showExpanded} >
+          <slot name="innerElement">Inner Element</slot>
+        </template>
+    </lightning-card>
+</template>

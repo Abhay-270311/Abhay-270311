@@ -1,0 +1,19 @@
+<!--
+  @description       : 
+  @author            : ABC
+  @group             : 
+  @last modified on  : 2021-07-04
+  @last modified by  : ABC
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   2021-07-04   ABC                                   Initial Version
+-->
+
+<template>
+    <div class="slds-p-around_small slds-grid slds-grid--vertical-align-center slds-grid--align-center">
+        <canvas class="barChart" lwc:dom="manual"></canvas>
+        <div if:false={isChartJsInitialized} class="slds-col--padded slds-size--1-of-1">
+            <lightning-spinner alternative-text="Loading" size="medium" variant="base"></lightning-spinner>
+        </div>
+    </div>
+</template>

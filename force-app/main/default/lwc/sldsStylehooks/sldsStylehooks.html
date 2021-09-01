@@ -1,0 +1,67 @@
+<!-- myBaseButton.html -->
+<template>
+    <div class="slds-box parent-div">
+       <h3>Style Hooks</h3>
+        <div class="expColp">
+            <lightning-button-icon variant="bare" size="small" icon-name={utilityIconTop} title={actionLabel} onclick={actionHandlerTop}></lightning-button-icon>
+        </div>
+        <template if:true={showExpanded} >
+    <lightning-card title="Standard button" class="slds-m-around_small lwc-bg">
+        <div class="slds-m-around_small">
+        <lightning-button variant="brand" label="Submit Base" >
+        </lightning-button>
+    </div>
+    </lightning-card>
+    <lightning-card title="HTML button" class=" lwc-bg slds-m-around_small">
+        <div class="slds-m-around_small">
+            <button class="slds-button slds-button_brand">Submit Custom</button>
+        </div>
+    </lightning-card>
+    <div class="container slds-m-around_small">
+        {content}
+    </div>
+        <lightning-card>
+            <h3 slot="title">
+                <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+                Actions Check!!
+            </h3>
+            <div slot="actions">
+                <lightning-button label={actionLabel} onclick={actionHandler}></lightning-button>
+            </div>
+            <div slot="footer">
+                <lightning-badge label="Footer Tag"></lightning-badge>
+            </div>
+            <p class={actionBodyClass}>Card Body (custom component)<br/>{content}</p>
+        </lightning-card>
+        </template>
+    </div><br/><br/>
+    <div class="slds-box"> :: Lightning Layout </div> <br/><br/>
+    <lightning-layout horizontal-align="spread" multiple-rows="true">
+    <lightning-layout-item flexibility="auto" class="custom-box slds-box" padding="around-small" size="12">1</lightning-layout-item>
+    <lightning-layout-item flexibility="auto" class="custom-box slds-box" size="8" padding="around-small" medium-device-size="10" large-device-size="8">2</lightning-layout-item>
+    <lightning-layout-item flexibility="auto" class="custom-box slds-box" size="4" padding="around-small" medium-device-size="2" large-device-size="4">3</lightning-layout-item>
+    <lightning-layout-item flexibility="auto" class="custom-box slds-box" size="12" padding="around-small" medium-device-size="6" large-device-size="4">4</lightning-layout-item>
+    <lightning-layout-item flexibility="auto" class="custom-box slds-box" size="12" padding="around-small" medium-device-size="6" large-device-size="4">5</lightning-layout-item>
+    <lightning-layout-item size="12" large-device-size="4">
+        <lightning-layout horizontal-align="spread" multiple-rows="true">
+            <lightning-layout-item flexibility="auto" class="custom-box slds-box" size="6" padding="around-small" medium-device-size="12" large-device-size="6">6</lightning-layout-item>
+            <lightning-layout-item flexibility="auto" class="custom-box slds-box" size="6" padding="around-small" medium-device-size="12" large-device-size="6">7</lightning-layout-item>
+        </lightning-layout>
+    </lightning-layout-item>
+</lightning-layout>
+ <br/><br/>
+<div class="slds-box">:: SLDS GRID </div> <br/><br/>
+<div class="slds-grid slds-wrap">
+    <div class="slds-size--1-of-1 slds-box">1</div>
+    <div class="slds-size--1-of-2 slds-medium-size--5-of-6 slds-large-size--8-of-12 slds-box">2</div>
+    <div class="slds-size--1-of-2 slds-medium-size--1-of-6 slds-large-size--4-of-12 slds-box">3</div>
+    <div class="slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3 slds-box">4</div>
+    <div class="slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3 slds-box">5</div>
+    <div class="slds-size--1-of-1 slds-large-size--1-of-3 ">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2 slds-box">6</div>
+            <div class="slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2 slds-box">7</div>
+        </div>
+    </div>
+</div>
+  </template>

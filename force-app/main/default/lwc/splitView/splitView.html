@@ -1,0 +1,101 @@
+<template>
+    <div class="lwc-bg slds-box"><h3>Split View</h3>
+        <div class="expColp">
+            <lightning-button-icon variant="bare" size="small" icon-name={utilityIconTop} title={actionLabel} onclick={actionHandler}></lightning-button-icon>
+        </div>
+        <template if:true={showExpanded} >
+        <div class="slds-m-around_small demo-only " style="display:flex;width:20rem;height:27rem">
+            <div class={maindivclass}>
+            <button class={subdivclass} aria-controls="split-view-id" aria-expanded={areaexpanded} title="Open Split View">
+            <lightning-button-icon size="small" title="Hide" variant="bare" icon-name="utility:chevronleft" data-name={buttonname} onclick={expandHandler}></lightning-button-icon>
+            <span class="slds-assistive-text">Open Split View</span>
+            </button>
+            <article aria-hidden="false" id="split-view-id" class="slds-split-view slds-grid slds-grid_vertical slds-grow">
+            <header class="slds-split-view__header">
+            <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_xx-small">
+            <div class="slds-has-flexi-truncate">
+            <div class="slds-media slds-media_center">
+            <div class="slds-media__figure">
+            <div class="slds-icon_container slds-icon-standard-lead">
+                <lightning-button-icon size="small" icon-name="standard:opportunity"></lightning-button-icon>
+            <span class="slds-assistive-text">Opportunities</span>
+            </div>
+            </div>
+            <div class="slds-media__body">
+            <h1 class="slds-text-heading_small slds-text-color_default slds-p-right_x-small">
+            <button class="slds-button slds-button_reset slds-type-focus slds-truncate" aria-haspopup="true" title="">
+            <span class="slds-grid slds-has-flexi-truncate slds-grid_vertical-align-center">
+            <span class="slds-truncate" title="Ohana Opportunity">Ohana Opportunity</span>
+            <lightning-button-icon size="small" icon-name="utility:chevrondown"></lightning-button-icon>
+            </span>
+            </button>
+            </h1>
+            </div>
+            </div>
+            </div>
+            <div class="slds-no-flex slds-grid">
+            <button class="slds-button slds-button_icon slds-button_icon-border-filled" aria-haspopup="true" title="More Actions">
+                <lightning-button-icon size="small" icon-name="utility:chevrondown"></lightning-button-icon>
+            <span class="slds-assistive-text">More Actions</span>
+            </button>
+            </div>
+            </div>
+            <div class="slds-grid slds-grid_vertical-align-center">
+            <p class="slds-text-body_small slds-text-color_weak">{rowcount} items • Fetched just now</p>
+            <div class="slds-no-flex slds-grid slds-col_bump-left">
+            <div class="slds-button-group">
+            <button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container-more" aria-haspopup="true" title="Display As Split View">
+                <lightning-button-icon size="small" icon-name="utility:side_list"></lightning-button-icon>
+            <svg class="slds-button__icon slds-button__icon_x-small" aria-hidden="true">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+            </svg>
+            <span class="slds-assistive-text">Display As Split View</span>
+            </button>
+            </div>
+            <div class="slds-button-group">
+            <button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container" title="Refresh List">
+                <lightning-button-icon size="small" icon-name="utility:refresh"></lightning-button-icon>
+            <span class="slds-assistive-text">Refresh List</span>
+            </button>
+            </div>
+            </div>
+            </div>
+            </header>
+            <div class="slds-grid slds-grid_vertical">
+            <div class="slds-split-view__list-header slds-grid">
+            <span class="slds-assistive-text">Sorted by:</span>
+            <span>Opportunity List <lightning-button-icon size="small" icon-name="utility:arrowdown"></lightning-button-icon>
+                <lightning-input type="text" placeholder="Enter Opportunity Name to Search" label="Search" variant="label-hidden" onchange={filterDataHandler}></lightning-input>
+            </span>
+            <span class="slds-assistive-text">- Descending</span>
+            </div>
+            <div class="slds-scrollable" style="height:16rem;">
+            <ul aria-multiselectable="true"  role="listbox" aria-label="Select an item to open it in a new workspace tab.">
+            <template for:each={getOptyList} for:item="opprecord">
+                <li key={opprecord.Id} class="slds-split-view__list-item slds-is-unread" role="presentation">
+                    <a href="#" aria-selected="false" role="option" class="slds-split-view__list-item-action slds-grow slds-has-flexi-truncate" tabindex="0">
+                    <abbr class="slds-indicator_unread" title="Unread Item" aria-label="Unread Item">
+                    <span class="slds-assistive-text">●</span>
+                    </abbr>
+                    <div class="slds-grid slds-wrap">
+                    <span class="slds-truncate slds-text-body_regular slds-text-color_default" title={opprecord.Name}>{opprecord.Name}</span>
+                    <span class="slds-truncate slds-col_bump-left" title={opprecord.Amount}>{opprecord.Amount}</span>
+                    </div>
+                    <div class="slds-grid slds-wrap">
+                    <span class="slds-truncate" title={opprecord.StageName}>{opprecord.StageName}</span>
+                    <span class="slds-truncate slds-col_bump-left" title={opprecord.Type}>{opprecord.Type}</span>
+                    </div>
+                    </a>
+                </li>
+            </template>
+                
+
+            </ul>
+        </div>
+            </div>
+            </article>
+            </div>
+            </div>
+            </template>
+    </div>
+</template>

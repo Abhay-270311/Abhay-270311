@@ -1,0 +1,34 @@
+<template>
+    
+    <lightning-card title="LWC Parent Child Events" class=" lwc-bg" >
+        
+            <div slot="actions">
+                <lightning-button-icon variant="bare" size="small" icon-name={utilityIconTop} title={actionLabel} onclick={actionHandler}></lightning-button-icon>
+            </div>
+            <template if:true={showExpanded} >
+                <div class="slds-p-horizontal_small slds-m-around_large slds-box parent-div" >
+                <ul class="slds-has-dividers_bottom-space">
+                    <li class="slds-item">
+                        <lightning-tile class="lwc-bg">Parent Constructor</lightning-tile>
+                    </li>
+                    <li class="slds-item"><lightning-tile class="lwc-bg">Parent connectedCallback</lightning-tile></li>
+                    <li class="slds-item"><lightning-tile class="lwc-bg">Child Constructor</lightning-tile></li>
+                    <li class="slds-item"><lightning-tile class="lwc-bg">Child connectedCallback</lightning-tile></li>
+                    <li class="slds-item"><lightning-tile class="lwc-bg">Grand Child Constructor</lightning-tile></li>
+                    <li class="slds-item"><lightning-tile class="lwc-bg">Grand Child connectedCallback</lightning-tile></li>
+                    <li class="slds-item"><lightning-tile class="lwc-bg">Grand Child renderedCallback</lightning-tile></li>
+                    <li class="slds-item"><lightning-tile class="lwc-bg">Child renderedCallback</lightning-tile></li>
+                    <li class="slds-item"><lightning-tile class="lwc-bg">Parent renderedCallback</lightning-tile></li>
+                </ul>
+                
+                
+                
+                
+                
+                
+                
+                <c-child></c-child>
+            </div>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,21 @@
+.lgc-bg{
+    background-color: lightslategray;
+}
+
+.show-right{
+	position: relative;
+    float: right;
+    margin-top: -15rem;
+    margin-right: 0.5rem;
+    border: 2px solid darkcyan;
+    padding: 10px;
+    border-radius: 5px;
+    width: auto;
+}
+
+.set-margin-button-top{
+    margin-top: 22px;
+}
+.myClass{
+    margin-top: 22px;
+}

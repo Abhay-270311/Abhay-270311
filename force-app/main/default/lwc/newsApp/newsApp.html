@@ -1,0 +1,29 @@
+<template>
+    <c-show-my-toast></c-show-my-toast>
+    <c-expand-collapse-cmp title-lc="News APP: REST Callouts">
+        
+    <span slot="innerElement">
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12"><lightning-button class="slds-m-around_small" variant="brand" label="Show News" onclick={getNewsHandler}></lightning-button></lightning-layout-item>
+            <lightning-layout-item size="12">
+                <template if:true={newsarticles}>
+                        <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small container">News Widget
+                            <lightning-carousel scroll-duration="3" class="clip">
+                               
+                                <template for:each={newsarticles} for:item="rec" for:index="index">
+                                    <lightning-carousel-image key={rec.title} src={rec.urlToImage} header={rec.title}
+                                        description={rec.description} alternative-text="First card accessible description."
+                                        href={rec.url}>
+                                        
+                                    </lightning-carousel-image>
+                                </template>
+                            </lightning-carousel>
+                        </div>
+                    
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+        
+        
+    </span></c-expand-collapse-cmp>
+</template>

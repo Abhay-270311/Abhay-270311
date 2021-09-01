@@ -1,0 +1,27 @@
+@import 'c/commonCss';
+/* width */
+::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 5px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: blueviolet; 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1d1c72; 
+  }
+  .slds-split-view__list-item .slds-indicator_unread, .slds-split-view__list-item .slds-indicator--unread {
+    background: var(--lwc-colorBrand,rgb(27, 150, 255));
+    margin: -7px;
+    margin-top: -2px;
+}

@@ -1,0 +1,14 @@
+.div-css {
+	padding: 10px;
+    background-color: lightgoldenrodyellow;
+    margin: 1.25rem;
+    border-radius: 1.25rem;
+	
+}
+.div-element{
+	border-radius: 5px;
+    border: .5px solid #40e0d0;
+    box-shadow: 0 4px 4px 0 #40cae0;
+    margin-bottom: 5px;
+    padding: 3px;
+}

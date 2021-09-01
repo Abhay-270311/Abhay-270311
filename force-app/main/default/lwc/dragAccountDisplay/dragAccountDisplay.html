@@ -1,0 +1,21 @@
+<template> 
+    <lightning-card title="Lightning Web Components::: Drag and Drop functionality 
+                                with pub-sub pattern event communication" 
+                icon-name="standard:action_list_component">
+    <div class="c-container">  
+        <lightning-layout>
+            <lightning-layout-item size="12" padding="around-small">   
+                <template if:true={accounts.data}>                
+                    <template for:each={accounts.data} for:item="account">
+                        <!-- use draggable="true" to make div as draggable-->
+                        <div class="column div-box" draggable="true" key={account.Id}
+                            data-item={account.Id} ondragstart={handleDragStart}>
+                            <div class="slds-text-heading_small">{account.Name}</div>
+                        </div>
+                    </template>
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+    </lightning-card>
+</template>

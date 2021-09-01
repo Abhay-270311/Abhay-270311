@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Parent Component - loopNestedComponent">
+        <div slot="actions" class="slds-p_around-none">
+            <lightning-button-icon variant="bare" size="small" icon-name={utilityIconTop} title={actionLabel} onclick={actionHandler}></lightning-button-icon>
+        </div>
+        <template if:true={showExpanded} >
+        <template for:each={hotelInformation} for:item="hotelInfo" for:index="Id">
+            <lightning-layout key={hotelInfo.id} class="container-nopad" multiple-rows="true">
+                <lightning-layout-item class="slds-p_right-small" size="12" medium-device-size="8" small-device-size="6">
+                     {hotelInfo.hotelName}
+                </lightning-layout-item>
+                <lightning-layout-item size="12">
+                <template for:each={hotelInfo.roomTypesQuantity} for:item="roomInfo">
+                    <c-loop-nested-child key={hotelInfo.id} room-information={roomInfo}></c-loop-nested-child>
+                </template>
+            </lightning-layout-item>
+            </lightning-layout>
+        </template>
+        </template>
+    </lightning-card>
+</template>

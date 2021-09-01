@@ -1,0 +1,13 @@
+<apex:page controller="OpportunityCustomPageController" lightningStylesheets="true">
+    <apex:form >
+    	 <apex:pageBlock title="Edit Opportunity">
+
+            <apex:pageBlockSection columns="1">
+                <apex:inputField value="{!opt.Name}"/>
+                <apex:inputField value="{!opt.AccountId}"/>
+                <apex:inputField value="{!opt.StageName}"/>
+                <apex:inputField value="{!opt.Type}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

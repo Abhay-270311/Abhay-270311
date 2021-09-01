@@ -1,0 +1,52 @@
+<template>
+  <c-expand-collapse-cmp title-lc="Continuation Callout">
+        
+    <span slot="innerElement">
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12"><lightning-button class="slds-m-around_small" variant="brand" label="Call Continuation" onclick={conCallHandler}></lightning-button></lightning-layout-item>
+            <lightning-layout-item size="12"><lightning-button class="slds-m-around_small" variant="brand" label="Temp Action" onclick={callAnotherHandler}></lightning-button></lightning-layout-item>
+            <lightning-layout-item size="12">
+              <div class="slds-card slds-p-around_large">
+                <lightning-spinner if:true={isLoading} size="small"></lightning-spinner>
+         
+                <h1 class="slds-text-heading_medium slds-p-bottom_x-small">APEX Continuation Callback</h1>
+                <code>{result}</code><br />
+                <code>{checkResp}</code>
+            </div>
+            </lightning-layout-item>
+        </lightning-layout>
+        
+        
+    </span></c-expand-collapse-cmp>
+    <c-expand-collapse-cmp title-lc="Continuation">
+    <span slot="innerElement">
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12">
+                <div >
+                    <img src={contImg} class="container" alt="Continuation Image"></img>
+                </div>
+                <div class="slds-summary-detail">
+                    <button class="slds-button slds-button_icon slds-m-right_x-small" title="Toggle details for Summary Title" aria-controls="expando-unique-id" aria-expanded={areaExpanded}>
+                        <lightning-button-icon variant="bare" size="small" icon-name={iconName} onclick={showSummaryHandler} data-name={iconName} ></lightning-button-icon>
+                      <span class="slds-assistive-text">Toggle details for Summary Title</span>
+                    </button>
+                    <div>
+                      <div class="slds-summary-detail__title">
+                        <h3 class="slds-text-heading_small slds-truncate" title="Continuation Information">Information</h3>
+                      </div>
+                      <div class={sldsContent} id="expando-unique-id" style="color:green;">
+                        <p>At this point, you may be asking yourself: what’s the point of using these long-running asynchronous callouts, called Continuations, versus other asynchronous alternatives like Queueable jobs? Well, you could use a Queueable job to perform a callout that will be executed asynchronously in the future, but you would lose the context of the execution. Even if you get the job Id, your component won’t have a callback that is executed once the job is finished. Queueable jobs fit better in situations where the user doesn’t need to wait to see the results of the callout.</p>
+                        <p>(1) A user invokes an action that requests some information from a Web Service
+                           <br/> (2 – 3) The app server sends the request to the Continuation Server and returns to the client-side, creating then an asynchronous situation / context
+                           <br/> (4 – 5) From the Continuation Server, a request is sent to the external Web Service
+                           <br/> (6 – 7) The Web Service processes a response that is sent back to the Continuation Server
+                           <br/> (8) This response is processed back to the App Server
+                           <br/> (9) And finally, sent back to the client-side to be displayed to the user</p>
+
+                      </div>
+                    </div>
+                  </div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </span></c-expand-collapse-cmp>
+</template>

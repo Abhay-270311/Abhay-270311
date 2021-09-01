@@ -1,0 +1,53 @@
+<template>
+    <lightning-card title="Account Contact Map Data">
+     <!--   <div slot="actions">
+            <lightning-button-icon variant="brand" size="small" icon-name={utilityIconTop} onclick={actionHandler}></lightning-button-icon>
+        </div>
+
+        <template if:true={showExpanded} >-->
+            <c-expand-collapse-cmp title-lc="Map to Iterator">
+                <span slot="innerElement"><div class="slds-m-around_medium">
+                    <template if:true={dataList} for:each={dataList} for:item="acct" for:index="ind">
+                       <div key={acct.id}></div>
+                        <template if:true={acct.contacts} for:each={acct.contacts} for:item="cont">
+                            <div key={cont.id}>
+                                <lightning-badge label={cont.id}></lightning-badge>
+                                <lightning-badge label={cont.FirstName}></lightning-badge>
+                                <lightning-badge label={cont.LastName}></lightning-badge>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+                <lightning-accordion allow-multiple-sections-open>
+                <template if:true={accContactData} for:each={accContactData} for:item="value1" >
+                    <lightning-accordion-section key={value1.key} name={value1.key} label={value1.key}>
+                        <div class="slds-m-around_medium" >
+                        <template if:true={value1.value} for:each={value1.value} for:item="value2" >   
+                            <p key={value2.key} >{value2.value}</p>
+                        </template>
+                        <template if:false={value1.value}>
+                            <lightning-tile key={value1.key} class="title-bg">
+                                <p>No Contacts for this Account</p>
+                            </lightning-tile>
+                        </template>
+                    </div>
+                    </lightning-accordion-section>
+                </template>
+                </lightning-accordion>
+                <div class="slds-m-around_medium">
+                    <template if:true={dataWrapper} for:each={dataWrapper} for:item="acct" for:index="ind">
+                        <p key={acct.accId} >{acct.accName}</p>
+                       <ul key={acct.accId} class="slds-has-dividers_bottom-space">
+                        <template if:true={acct.contacts} for:each={acct.contacts} for:item="cont">
+                            <lightning-tile class="title-bg" key={cont.conId}>
+                                <li >  {cont.firstName} ::: {cont.lastName}</li> 
+                            </lightning-tile>    
+                        </template>
+                    </ul>
+                    </template>
+                </div></span>
+            </c-expand-collapse-cmp>
+         
+   <!-- </template> -->
+    </lightning-card>
+</template>

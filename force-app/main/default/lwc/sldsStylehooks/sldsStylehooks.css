@@ -1,0 +1,8 @@
+@import 'c/commonCss';
+/* myBaseButton.css */
+:host {
+    --sds-c-button-brand-color-background: orange;
+    --sds-c-button-brand-color-border: orange;
+    /* Other CSS custom properties here */
+    
+  }

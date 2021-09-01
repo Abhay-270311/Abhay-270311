@@ -1,0 +1,17 @@
+<!--
+  @description       : 
+  @author            : ABC
+  @group             : 
+  @last modified on  : 2021-07-04
+  @last modified by  : ABC
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   2021-07-04   ABC                                   Initial Version
+-->
+<template>
+    <lightning-card title="Open Opportunities" icon-name="utility:chart">
+        <template if:true={chartConfiguration}>
+            <c-bar-chart chart-config={chartConfiguration}></c-bar-chart>
+        </template>
+</lightning-card>
+</template>

@@ -1,0 +1,118 @@
+<template>
+    <lightning-card title="Add Remove Records">
+        <div slot="actions">
+            <lightning-button-icon variant="brand" size="small" icon-name={utilityIconTop} onclick={actionHandler}></lightning-button-icon>
+        </div>
+        <template if:true={showExpanded} >
+            <lightning-card title="Display Students Information" class="slds-p-around_medium ">
+
+                <!--<template if:true={studentData} for:each={studentData} for:item="sturecord">
+                <lightning-tile title={sturecord.sId} key={sturecord.sId} class="slds-p-around_medium lgc-bg" >
+                    <lightning-layout multiple-rows="true">
+                    <lightning-layout-item size="2"  padding="around-medium slds-text-align_center" >
+                            <br/><br/>
+                            <lightning-input type="checkbox" id={sturecord.sId} label="Basic option" name="input1"></lightning-input>
+                
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" padding="around-medium">
+                        <lightning-input type="text" value={sturecord.sFirstName} label="First Name" ></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" padding="around-medium">
+                        <lightning-input type="text" value={sturecord.sLastName} label="Last Name" ></lightning-input>
+                    </lightning-layout-item>
+                        
+                </lightning-layout>
+                        
+                    
+                </lightning-tile>
+                </template> 
+                <div  slot="actions">
+                    <lightning-button-icon icon-name="utility:add" variant="brand" title="Add Row" onclick={newRowHandler}></lightning-button-icon>
+                </div>
+                <lightning-layout class="slds-form">
+                    
+                    <lightning-layout-item size="12">
+                        <template if:true={dataUpdated} >
+                            <div class="slds">
+                                <table class="slds-table slds-table--bordered">
+                                    <template if:true={studentDataVar} iterator:sturecord={studentDataVar} >
+                                    <tr class="slds-hint-parent" key={sturecord.value.sId}>
+                                        <td ><div style="height: 1.3rem;"></div><lightning-input type="checkbox" title={sturecord.index} data-name={sturecord.index} name={sturecord.value.sId} id={sturecord.value.sId} label="Basic option" onchange={setFirstName} ></lightning-input></td>
+                                        <td ><lightning-input type="text" title={sturecord.index} data-name={sturecord.index}  name={sturecord.value.sId} value={sturecord.value.sFirstName} label="First Name" onchange={setFirstName} ></lightning-input></td>
+                                        <td ><lightning-input type="text" title={sturecord.index} data-name={sturecord.index}  name={sturecord.value.sId} value={sturecord.value.sLastName} label="Last Name" onchange={setFirstName} ></lightning-input></td>
+                                       <template if:true={sturecord.last}> <td><div style="height: 1.3rem;"></div><lightning-button-icon  variant="brand" icon-name="utility:delete" data-name={sturecord.index}   alternative-text="Delete"   class="slds-m-left_xx-small slds-m-top_x-large" title="Delete" onclick={removeRowHandler}></lightning-button-icon></td></template>
+                                    </tr>
+                                </template>
+                                </table>
+                            </div>
+                        </template>
+                    </lightning-layout-item>
+                    
+                </lightning-layout>-->
+                <lightning-card title="InLine Display" class="slds-p-around_small">
+                <template if:true={dataUpdated} >
+                    <div slot="actions">
+                        <lightning-button-icon icon-name="utility:adduser" alternative-text="Add user" class="slds-m-left_xx-small" title="Add Row" onclick={newRowHandler}></lightning-button-icon>
+                    </div>
+                    <div class="slds">
+                        <table class="slds-table slds-table--bordered">
+                            <template if:true={studentDataVar} iterator:sturecord={studentDataVar} >
+                            <tr class="slds-hint-parent" key={sturecord.value.sId}>
+                                <td ><lightning-input type="checkbox" title={sturecord.index} data-name={sturecord.index} name={sturecord.value.sId} id={sturecord.value.sId} label="Basic option" onchange={setFirstName} ></lightning-input></td>
+                                <td ><lightning-input type="text" title={sturecord.index} variant="label-hidden" data-name={sturecord.index}  name={sturecord.value.sId} value={sturecord.value.sFirstName} label="First Name" onchange={setFirstName} ></lightning-input></td>
+                                <td ><lightning-input type="text" title={sturecord.index} variant="label-hidden" data-name={sturecord.index}  name={sturecord.value.sId} value={sturecord.value.sLastName} label="Last Name" onchange={setFirstName} ></lightning-input></td>
+                               <template if:true={sturecord.last}> <td ><lightning-button-icon icon-name="utility:delete" data-name={sturecord.index}   alternative-text="Delete"   class="slds-m-left_xx-small" title="Delete" onclick={removeRowHandler}></lightning-button-icon></td></template>
+                            </tr>
+                        </template>
+                        </table>
+                    </div>
+                    
+                </template>
+                <!--<template if:true={studentDataVar} for:each={studentDataVar} for:item="sturecord" for:index="indId">
+                <div class="container slds-form__row slds-m-around_medium" key={sturecord.sId}>
+                    <lightning-input type="checkbox" title={indId} data-name={indId} name={sturecord.sId} id={sturecord.sId} label="Basic option" onchange={setFirstName} ></lightning-input>
+                    <lightning-input type="text" title={indId} data-name={indId}  name={sturecord.sId} value={sturecord.sFirstName} label="First Name" onchange={setFirstName} ></lightning-input>
+                    <lightning-input type="text" title={indId} data-name={indId}  name={sturecord.sId} value={sturecord.sLastName} label="Last Name" onchange={setFirstName} ></lightning-input>
+                    <lightning-button-icon icon-name="utility:delete" data-name={indId}   alternative-text="Delete"   class="slds-m-left_xx-small" title="Delete" onclick={removeRowHandler}></lightning-button-icon>
+                </div>
+                
+                </template></template>
+                <div class="show-right">
+                    <lightning-button-icon icon-name="utility:adduser" alternative-text="Add user" class="slds-m-left_xx-small" title="Add Row" onclick={newRowHandler}></lightning-button-icon>
+                </div>-->
+                </lightning-card>
+                <div class="slds-size_1-of-2 slds-p-bottom_small slds-p-left_medium">
+                    <lightning-button  variant="brand" onclick={sendStudentData} label="Send Data"></lightning-button>
+                </div>
+                </lightning-card>
+                <!--
+                <lightning-card title="Form Data">
+                <div class="slds-form-element">
+                    <lightning-input type="text" class="slds-size_1-of-2 slds-p-around_small" label="First Name" data-id="fName"></lightning-input>
+                    <lightning-input type="text" class="slds-size_1-of-2 slds-p-around_small" label="Last Name" data-id="lName"></lightning-input>
+                    <lightning-button label="Next" class="slds-size_1-of-2 slds-p-around_small" onclick={setDataInArr} ></lightning-button>
+                </div>
+                </lightning-card>
+                
+                <p>
+                    <lightning-combobox
+                            name="progress"
+                            label="Status"
+                            value={value}
+                            placeholder="Select Progress"
+                            options={options}
+                            ></lightning-combobox>
+                </p>
+                <lightning-card title="Opportunity Data">
+                    <lightning-layout multiple-rows>
+                    <template if:true={optList} for:each={optList} for:item="optrecord">
+                        <lightning-layout-item key={optrecord.Id} class="slds-size_1-of-2 slds-p-around_small">
+                            <lightning-input key={optrecord.Id}  data-id={optrecord.Id} label="Opportunity Name" onchange={OppNameChangeHandler}  value={optrecord.Name}></lightning-input>  
+                        </lightning-layout-item>
+                    </template>
+                    </lightning-layout>
+                    </lightning-card> -->
+        </template>
+    </lightning-card>
+
+</template>

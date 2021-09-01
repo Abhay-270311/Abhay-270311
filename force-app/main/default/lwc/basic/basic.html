@@ -1,0 +1,16 @@
+<template>
+    <lightning-card  title="Demo Learning">
+        <div class="slds-p-horizontal_small div-css">WELCOME {uName}!
+            <lightning-icon icon-name="utility:activity" onclick={changeUserNameHandler} alternative-text="Approved" title="Approved"></lightning-icon>
+        </div> 
+        <template if:true={displayName}>
+            <div class="div-css">
+            Inside...Displaying users<br/>
+            <template for:each={users} for:item="obj">
+                <p key={obj} class="div-element"> <lightning-icon icon-name="standard:user" alternative-text="Doc image" ></lightning-icon>
+                <!--More icon please visit : https://www.lightningdesignsystem.com/icons/ -->{obj}</p>
+            </template>
+            </div>
+        </template>
+    </lightning-card>
+</template>

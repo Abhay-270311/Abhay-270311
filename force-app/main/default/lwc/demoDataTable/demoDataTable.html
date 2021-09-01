@@ -1,0 +1,14 @@
+<template>
+    
+    <c-expand-collapse-cmp title-lc="Extended DataTable With Picklist">
+    <span slot="innerElement">
+        <c-custom-data-table
+        key-field="id"
+        data={data}
+        show-row-number-column="false"
+        hide-checkbox-column="false"
+        columns={columns}
+        onpicklistchanged={pickliListChanged}
+	    ></c-custom-data-table>
+    </span></c-expand-collapse-cmp>
+</template>

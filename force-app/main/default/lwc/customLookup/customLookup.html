@@ -1,0 +1,61 @@
+<template>
+    <div class={className}>
+        <template if:true={label}>
+            <p class="slds-form-element__label">
+                <template if:true={required}>
+                    <span class="requiredAsterisk">*</span>
+                </template>
+                {label}
+            </p>
+        </template>
+        <div class="slds-combobox_container" aria-expanded="true" aria-haspopup="listbox" role="combobox">
+            <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
+                <!-- Search Input Box -->
+                <template if:false={showPill}>
+                    <lightning-input onchange={searchRecords} onclick={showRecords} onblur={blurEvent} class="inputBox" type="search" autocomplete="off" variant="label-hidden" placeholder={placeholder}></lightning-input>
+                    <div if:true={showSpinner}>
+                        <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                    </div>
+                </template>
+
+                <!-- Selected Value Pill -->
+                <div if:true={showPill} class="pillContainer">
+                    <lightning-pill class="fullWidth" label={selectedRecord.label} name={selectedRecord.value} onremove={removeItem}>
+                        <lightning-icon icon-name={iconName} alternative-text="icon" size="x-small"></lightning-icon>
+                    </lightning-pill>
+                </div>
+                <!-- Selected Value Pill -->
+                <div if:true={showPillMulti} class="pillContainer">
+                    <template for:each={selPillData} for:item="obj" for:index="index">
+                        <lightning-pill key={obj.value} class="fullWidth" label={obj.label} name={obj.value} onremove={removeItemFromArr}>
+                            <lightning-icon icon-name={iconName} alternative-text="icon" size="x-small"></lightning-icon>
+                        </lightning-pill>
+                    </template>
+                </div>
+
+                <!-- Dropdown List -->
+                <template if:true={showDropdown}>
+                    <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" >
+                        <ul class="slds-listbox slds-listbox_vertical recordListBox" >
+                            <template if:false={message} >
+                                <template for:each={recordsList} for:item="rec">
+                                    <li key={rec.value} data-key={rec.value} class="slds-listbox__item eachItem" onmousedown={selectItem}>
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <lightning-icon icon-name={iconName} alternative-text="icon" size="small"></lightning-icon>
+                                            <span class="verticalAlign slds-truncate">{rec.label}</span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </template>
+                            <template if:true={message} >
+                                <li class="slds-listbox__item">
+                                    <span class="slds-media slds-listbox__option_entity">{message}</span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

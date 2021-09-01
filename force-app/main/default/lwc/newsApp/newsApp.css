@@ -1,0 +1,43 @@
+.container {
+    max-width: 95%;
+    background-color: gray;
+
+}
+
+.clip {
+    max-width: 100%;
+
+}
+
+.slds-text-align_center,
+.slds-text-align--center {
+    text-align: center;
+    width: fit-content;
+}
+
+.slds-text-link_reset,
+.slds-text-link_reset:active,
+.slds-text-link_reset:focus,
+.slds-text-link_reset:hover,
+.slds-text-link--reset,
+.slds-text-link--reset:active,
+.slds-text-link--reset:focus,
+.slds-text-link--reset:hover {
+    color: inherit;
+    text-decoration: inherit;
+    width: 90%;
+}
+
+img {
+    max-width: 100%;
+    height: 330px;
+}
+
+
+.slds-carousel__stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 500px;
+}

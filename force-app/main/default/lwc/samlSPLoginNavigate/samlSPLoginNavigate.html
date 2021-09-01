@@ -1,0 +1,46 @@
+<template>
+    <lightning-card title="SAML Login to SF ORG" class="lgc-bg ">
+      <!--  <lightning-tile class="custom-box slds-m-around_medium">
+            <div class="slds-p-around_medium title-bg">
+                <p><lightning-badge label="Follow Below URL to Login to LWC Org"></lightning-badge></p>
+                <p><lightning-formatted-url value="https://d5g000004wvfieam-dev-ed.my.salesforce.com/idp/login?app=0sp5g000000Kyoa" tooltip="SAML Login" target="_blank"></lightning-formatted-url></p>
+            </div>
+        </lightning-tile>-->
+        <lightning-tile class="container slds-p-around_medium slds-m-around_medium css-hand" onclick={navigateHandler}>
+            CLICK HERE TO LOGIN USING SAML TO ALLLWC SF ORG!
+        </lightning-tile>
+        <lightning-tile class="container slds-p-around_medium slds-m-around_medium css-hand" onclick={navigateHandlerD}>
+            CLICK HERE TO LOGIN USING SAML TO DEV03 SF ORG!
+        </lightning-tile>
+            <c-expand-collapse-cmp title-lc="STEPS"> 
+            <span slot="innerElement">
+                <div class="slds-m-around_medium">
+                    <lightning-layout multiple-rows>
+                        <lightning-layout-item size="12">
+                <ol style="list-style: devanagari;">
+                    <li >   <lightning-tile class="title-bg title-bg-border"  >
+                        IDP - Enable identity provider and Create self signed certificate
+                    </lightning-tile></li>
+                    <li >   <lightning-tile class="title-bg title-bg-border"  >
+                        SP - Remote Site Setting
+                </lightning-tile></li>
+                <li >   
+                    <lightning-tile class="title-bg title-bg-border"  >
+                            SP - Enable single sign on, Create SAML from metadata URL
+                        </lightning-tile>
+                    </li>
+                    <li >   
+                        <lightning-tile class="title-bg title-bg-border"  >
+                            IDP - Create Connected App; Enable SAML in app;
+                            <p> Enter Entity ID - Federation ID from SP SAML</p>
+                            <p> Enter ACS - Login URL SP SAML</p>
+                            <p> Select Certificatio self signed, use type as federationId</p>
+                            <p> Click Manage and add profiles to be allowed</p>
+                        </lightning-tile>
+                    </li>
+                </ol></lightning-layout-item>
+            </lightning-layout></div>
+            </span></c-expand-collapse-cmp>
+        
+    </lightning-card>
+</template>
