@@ -67,7 +67,7 @@ public with sharing class DynamicTreeStructure {
         }
 
         //gather all opportunities
-        for(Opportunity opp : [SELECT Id, Name, AccountId FROM Opportunity WHERE AccountId =: accMap.keySet()]){
+        for(Opportunity opp : [SELECT Id, Name, AccountId, trackingNumber__c FROM Opportunity WHERE AccountId =: accMap.keySet()]){
             if(!accOppCMap.containsKey(opp.AccountId)){
                 accOppCMap.put(opp.AccountId, new List<Opportunity>());
             }

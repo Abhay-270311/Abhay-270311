@@ -1,5 +1,25 @@
 public class InfoTasksSFLWC {
     
+     //Counting total vs commented line in apex code
+	//ApexClass a  = [Select Body From ApexClass where Name = 'QueryRowsCheck'];
+
+//List<String> lines = a.Body.split('\n');
+//Integer cnter = 0, gcomment= 0;
+//for(String line:lines){
+    //if(gcomment > 0 && line.contains('*/')){
+      //  cnter += gcomment;
+     //   gcomment = 0;
+ //   }
+  //  if(line.startsWith('//') || line.contains('//')){
+ //       cnter++;
+ //   } else if(line.startsWith('/*') || line.contains('/*')){
+ //       gcomment++;
+  //      continue;
+  //  }
+//}
+//system.debug(' # Lines - '+ lines.size());
+//system.debug(' # commented Lines - '+ cnter);
+
     /*
 
 Create Wrapper Classes for Below Responses

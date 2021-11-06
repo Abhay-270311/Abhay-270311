@@ -1,3 +1,8 @@
 <template>
-    <c-grand-child></c-grand-child>
+    <template if:true={showGrandChild}>
+        <c-grand-child showbutton={parentVar}></c-grand-child><br><br>
+    </template>
+    <lightning-button variant="brand" label="ShowHide" title="titleName" onclick={handleChildClick}></lightning-button>
+   <br><br> <c-chinld-nav onclickchildnav={handleCustomChildTwoEvent}></c-chinld-nav>
+   <p>Child Var: {childVar}</p>
 </template>

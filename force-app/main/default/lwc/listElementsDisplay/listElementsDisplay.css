@@ -1,0 +1,37 @@
+.dummy{
+	color : black;
+}
+
+.dark-background{
+    background-color: #1b64d3;
+    padding: 0.125rem;
+    color: #fff;
+}
+
+.margin-cls{
+    margin: 0.125 rem;
+}
+
+.slds-box1{
+    border-radius: var(--lwc-borderRadiusMedium,0.25rem);
+    border: var(--lwc-borderWidthThin,1px) solid var(--lwc-colorBorder,rgb(221, 219, 218));
+
+}
+.footer-count {
+    background-color: ghostwhite;
+    line-height: 2;
+    text-align: center;
+    color: #042E64;
+    font-size: 25px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #84BAFF;
+    box-shadow: 0 0 15px #00214B;
+    position: absolute;
+    bottom: 10px;
+    right:10px;
+    border-radius:50%;
+    min-width:50px;
+    max-height:50px;
+    
+}

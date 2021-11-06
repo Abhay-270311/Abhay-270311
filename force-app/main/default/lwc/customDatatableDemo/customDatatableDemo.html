@@ -1,0 +1,16 @@
+<template>
+    <template if:true={data}>
+        <c-custom-data-table 
+            key-field="Id" 
+            data={data} 
+            columns={columns} 
+            onpicklistchanged={picklistChanged} 
+            onvalueselect={handleSelection}
+            draft-values={draftValues} 
+            oncellchange={handleCellChange}
+            onsave={handleSave}
+            oncancel={handleCancel}
+            hide-checkbox-column>
+        </c-custom-data-table>
+    </template>
+</template>

@@ -1,0 +1,20 @@
+.THIS .clsFieldset {    
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border: 2px groove;
+    display: block;
+    border-radius: 5px;    
+}
+.THIS .clsLegend {    
+    padding-left: 2px;
+    padding-right: 2px;
+    border: none;
+    display: block;
+    font-size: 1rem;
+}
+.THIS .labelSpace .slds-form-element__label {
+    display: none!important;
+}

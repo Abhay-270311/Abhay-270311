@@ -20,14 +20,13 @@
                     <li class="slds-item"><lightning-tile class="lwc-bg">Child renderedCallback</lightning-tile></li>
                     <li class="slds-item"><lightning-tile class="lwc-bg">Parent renderedCallback</lightning-tile></li>
                 </ul>
-                
-                
-                
-                
-                
-                
-                
-                <c-child></c-child>
+                <lightning-button variant="brand" label="GetLocalStorage" title="titleName" onclick={handleBtnClick}></lightning-button>
+                <br><a href="https://www.google.com" target="_blank" title="Anchor" name="AnchorName" onclick={handleLinkClick}><lightning-button variant="base" label="This is Anchor Content" data-name='ABhay' data-href="111111" title="TTT"></lightning-button></a><br>
+                <br>{storageItem}<br>
+                <br>Prev Location: {prevLocation}<br>
+                <br>Curre nt Location: {currLocation}<br>
+                <c-child-two ongrandchild={handleCustomEvent}></c-child-two>
+                <c-child show-grand-child={displayflag} ongrandchild={handleCustomEvent}></c-child>
             </div>
         </template>
     </lightning-card>

@@ -1,0 +1,21 @@
+<template>
+    <c-show-my-toast></c-show-my-toast>
+    <c-expand-collapse-cmp title-lc="SELECT/DESELECT ITEMS LISTED">
+        
+    <span slot="innerElement">
+        <lightning-layout multiple-rows>
+            <template if:true={itemsList} for:each={itemsList} for:item="datarow">
+                    <lightning-layout-item key={datarow.itemIndex} size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3" >
+                        <div class={className} data-divid={datarow.itemIndex}>
+                            <lightning-icon data-id={datarow.itemIndex} class="slds-p-around_small" variant={varianeName} onclick={handleClick} size="xx-small" icon-name={iconName} alternative-text="Add"></lightning-icon>
+                            {datarow.itemIndex}-{datarow.itemName}
+                        </div>
+                        </lightning-layout-item>  
+               </template>
+               <div class="footer-count">{cnt}</div>
+        </lightning-layout>
+        
+        
+    </span>
+    </c-expand-collapse-cmp>
+</template>

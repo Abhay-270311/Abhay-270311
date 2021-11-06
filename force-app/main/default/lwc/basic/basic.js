@@ -1,7 +1,7 @@
 import { LightningElement, track } from 'lwc';
 export default class Basic extends LightningElement {
     uName = ' Abhay';
-    @track users = ['abhay','tejswini','vonod','adarsh'];
+    @track users = ['abhay','tejswini','vinod','adarsh'];
     displayName = true;
 // you can call apex
 //access all events

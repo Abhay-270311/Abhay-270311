@@ -1,7 +1,15 @@
 <template>
-    <lightning-card title={titleLc}>
-        <div slot="actions">
-            <lightning-button-icon variant="brand" size="small" icon-name={utilityIconTop} onclick={actionHandler}></lightning-button-icon>
+    <lightning-card >
+        <h1 slot="title" >
+            <template if:true={showLeft}>
+                <lightning-button-icon variant="brand" size="small" icon-name={utilityIconTop} onclick={actionHandler}></lightning-button-icon>
+            </template>
+            {titleLc}
+        </h1>
+        <div slot="actions" >
+            <template if:false={showRight}>
+                <lightning-button-icon variant="brand" size="small" icon-name={utilityIconTop} onclick={actionHandler}></lightning-button-icon>
+            </template>
         </div>
         <template if:true={showExpanded} >
           <slot name="innerElement">Inner Element</slot>

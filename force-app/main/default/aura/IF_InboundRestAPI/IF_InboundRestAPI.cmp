@@ -1,0 +1,284 @@
+<aura:component controller ="IF_InboundRestAPICtrl" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="sObjects" type="List"/>
+    <aura:attribute name="relatedsObjects" type="List"/>
+    <aura:attribute name="sObjectFields" type="List"/>
+    <aura:attribute name="sObjectAPI" type="string"/>
+    <aura:attribute name="sObjectLabel" type="string"/>
+    <aura:attribute name="childSObjectAPI" type="string"/>
+    <aura:attribute name="childSObjectLabel" type="string"/>
+    <aura:attribute name="relationshipName" type="string"/>
+    <aura:attribute name="searchText" type="string"/>
+    <aura:attribute name="filteredsObjectFields" type="List"/>
+    <aura:attribute name="sortBy" type="String" default="AttributeValue"/>
+    <aura:attribute name="sortDirection" type="String" default="asc"/>
+    <aura:attribute name="isDisabled" type="Boolean" default="true"/>
+    <aura:attribute name="spinner" type="boolean" default="FALSE"/>
+    <aura:attribute name="showModal" type="Boolean" default="false"/>
+    <aura:attribute name="showChildModal" type="Boolean" default="false"/>
+    <aura:attribute name="showSysNameModal" type="Boolean" default="false"/>
+    <aura:attribute name="showConnectionModal" type="Boolean" default="false"/>
+    <aura:attribute name="showNodeNm" type="Boolean" default="false"/>
+    <aura:attribute name="showSubNodeNm" type="Boolean" default="false"/>
+    <aura:attribute name="nodeName" type="string"/>
+    <aura:attribute name="subNodeName" type="string"/>
+    <aura:attribute name="connType" type="string"/>
+    <aura:attribute name="connTypeName" type="string"/>
+    <aura:attribute name="showMainScreen" type="Boolean" default="false"/>
+    <aura:attribute name="systemName" type="String"/>
+    <aura:attribute name="sysNameLst" type="List"/>
+    <aura:attribute name="isDisableInputLst" type="Boolean" default="false"/>    
+    <!--aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/-->
+    
+    <lightning:spinner aura:id="myspinner" alternativeText="Loading" size="medium" class="slds-hide"/>
+    
+    <!--loading spinner start-->
+    <!--aura:if isTrue="{!v.spinner}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+            <div class="slds-spinner-brand  slds-spinner slds-spinner-large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading...</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if-->
+    
+    <!-- Loading spinner end-->   
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <!--<div class="slds-box slds-theme_default" style="background-color:#FEF9E7">-->
+    <div class="slds-box slds-theme_default">
+        <div class="demo-only">
+            <div class="slds-form slds-form_stacked">
+                <br/>  
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-align_absolute-center">
+                        <lightning:button variant="brand" label="{!$Label.c.IF_Save_button}" title="Save Details" onclick="{!c.saveMetaDataDetails}" disabled ="{!v.isDisabled}"/>
+                        <lightning:button variant="brand" label="{!$Label.c.IF_Reset_Button}" title="Reset Details" onclick="{!c.cancelDetails}"/>
+                    </div>
+                </div>
+                
+                 <fieldset class="clsFieldset">
+                    <legend class="clsLegend">
+                        <div class="slds-text-title_caps slds-text-color_success">{!$Label.c.IF_Connection_Details}</div>
+                    </legend>
+                    <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-right_small">
+                                <label class="slds-form-element__label">{!$Label.c.IF_Conn_Type}</label>
+                                <lightning:helptext content="{!$Label.c.IF_Conntype_helptext}"/>
+                                <lightning:select aura:id="connType" value="{!v.connType}" label="" class="labelSpace" onchange="{!c.getConnectionType}" variant="label-hidden">
+                                    <option value="" text="--None--"/>
+                                    <option value="New" text="New"/> 
+                                    <option value="Existing" text="Existing"/> 
+                                </lightning:select>
+                            </div>
+                        </div>
+                </fieldset>
+                <br/>
+                <aura:if isTrue="{!v.showMainScreen}">
+                <fieldset class="clsFieldset">
+                    <legend class="clsLegend">
+                        <div class="slds-text-title_caps slds-text-color_success">{!$Label.c.IF_Basic_Info_Section}</div>
+                    </legend>
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-2 slds-p-right_small">
+                            <aura:if isTrue="{!v.connType == 'New'}">
+                            	<label class="slds-form-element__label">{!$Label.c.IF_Enter_SysName}</label>
+                                <lightning:helptext content="{!$Label.c.IF_Enter_SysName_Help}"/> 
+                                <lightning:input placeholder="Enter System Name" value="{!v.systemName}" label="" class="labelSpace" oncommit="{!c.checkExistingSystemName}" variant="label-hidden"/>  
+                            </aura:if>
+                            <aura:if isTrue="{!v.connType == 'Existing'}">
+                               <label class="slds-form-element__label">{!$Label.c.IF_select_SysName}</label>
+                               <lightning:helptext content="{!$Label.c.IF_select_SysName_Helptext}"/> 
+                               <lightning:select aura:id="sysNameLst" label="" class="labelSpace" onchange="{!c.onchangeSystemName}" variant="label-hidden">
+                                    <option value="" text="--None--"/> 
+                                    <aura:iteration items="{!v.sysNameLst}" var="sLst">
+                                        <option value="{!sLst}">{!sLst}</option>  
+                                    </aura:iteration>
+                               </lightning:select>
+                            </aura:if>
+                        </div> 
+                        <div class="slds-col slds-size_1-of-2 slds-p-right_small">
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-right_small">
+                            <label class="slds-form-element__label">{!$Label.c.IF_Select_Sobject}</label>
+                            <lightning:helptext content="{!$Label.c.IF_SObjectSelect_Help_text}"/>
+                            <lightning:select aura:id="sObjectList" label="" class="labelSpace" onchange="{!c.getRelatedsObjectList}" variant="label-hidden" disabled="{!v.isDisableInputLst}">
+                                <option value="" text="--None--"/> 
+                                <aura:iteration items="{!v.sObjects}" var="sObj">
+                                    <option value="{!sObj.value +'#'+ sObj.label}">{!sObj.label}</option>  
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-left_small">                           
+                            <aura:if isTrue="{!v.showNodeNm}">
+                                <label class="slds-form-element__label">{!$Label.c.IF_Parent_Node_Name}</label>
+                                <lightning:helptext content="{!$Label.c.IF_ParentNodeName_Help_txt}"/>
+                                <lightning:input value="{!v.nodeName}" label="" class="labelSpace" variant="label-hidden"/>
+                            </aura:if>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-right_small">
+                            <label class="slds-form-element__label">{!$Label.c.IF_Select_field_mapping}</label>
+                            <lightning:helptext content="{!$Label.c.IF_childNode_Help_text}"/>
+                            <lightning:select aura:id="childsObjectList" label="" class="labelSpace" onchange="{!c.getsObjectFieldList}" variant="label-hidden" disabled="{!v.isDisableInputLst}">
+                                <option value="" text="--None--"/> 
+                                <aura:iteration items="{!v.relatedsObjects}" var="sObj">
+                                    <option value="{!sObj.value}">{!sObj.label}</option>  
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                       <div class="slds-col slds-size_1-of-2 slds-p-left_small">
+                            <aura:if isTrue="{!v.showSubNodeNm}">
+                                <label class="slds-form-element__label">{!$Label.c.IF_Child_Node_Name}</label>
+                                <lightning:helptext content="{!$Label.c.IF_ChildNodeName_Help_txt}"/>
+        						<lightning:input value="{!v.subNodeName}" class="labelSpace" label="" variant="label-hidden"/>
+                            </aura:if>
+                        </div>
+                    </div>
+                </fieldset>
+                </aura:if>
+                <br/>
+                <aura:if isTrue="{!not(empty(v.sObjectFields))}">
+                    <fieldset class="clsFieldset">
+                        <legend class="clsLegend">
+                            <div class="slds-text-title_caps slds-text-color_success">{!$Label.c.IF_Parent_Child_mapping_section}</div>
+                        </legend>
+                        <lightning:input value="{!v.searchText}" label="{!$Label.c.If_SearchField}" placeholder="{!$Label.c.IF_placeholder_for_search}" onchange="{!c.filterData}"/>
+                        <br/> 
+                        <div class="slds-scrollable slds-box" style="height:25rem;width:83rem">
+                            <div class="attributeContainer slds-p-top_small">
+                                <div class="slds-table--header-fixed_container">
+                                    <table class="slds-table slds-table--header-fixed  table_sortable-cols">
+                                        <thead>
+                                            <tr class="slds-text-title_caps">
+                                                <th class="{!'slds-is-sortable' + if(v.sortBy == 'fieldAPI', ' slds-is-sorted slds-is-sorted_' + v.sortDirection)}" 
+                                                    data-column-name="fieldAPI" 
+                                                    onclick="{!c.handleSorting}" 
+                                                    scope="col">
+                                                    <a class="slds-th__action slds-text-link--reset" tabindex="0">
+                                                        <span class="slds-assistive-text">Sort</span>
+                                                        <span class="slds-truncate" title="fieldAPI">{!$Label.c.IF_Field_API}</span>
+                                                        <lightning:icon iconName="utility:arrowup" size="x-small" class="slds-icon slds-is-sortable__icon" />
+                                                    </a>
+                                                </th>
+                                                <th class="{!'slds-is-sortable' + if(v.sortBy == 'attributeValue', ' slds-is-sorted slds-is-sorted_' + v.sortDirection)}" 
+                                                    data-column-name="attributeValue" 
+                                                    onclick="{!c.handleSorting}" 
+                                                    scope="col">
+                                                    <a class="slds-th__action slds-text-link--reset" tabindex="0">
+                                                        <span class="slds-assistive-text">Sort</span>
+                                                        <span class="slds-truncate" title="attributeValue">{!$Label.c.IF_External_Attribute}</span>
+                                                        <lightning:icon iconName="utility:arrowup" size="x-small" class="slds-icon slds-is-sortable__icon" />                                         
+                                                    </a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:iteration items="{!v.filteredsObjectFields}" var="item">
+                                                <tr>
+                                                    <td>
+                                                        <lightning:input disabled="true" value="{!item.fieldAPI}" label="hidden" variant="label-hidden"/>
+                                                    </td>
+                                                    <td>
+                                                        <lightning:input value="{!item.attributeValue}" label="hidden" variant="label-hidden"/>
+                                                    </td>
+                                                </tr>
+                                            </aura:iteration>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </aura:if>
+                <br/>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-align_absolute-center">
+                        <lightning:button variant="brand" label="{!$Label.c.IF_Save_button}" title="Save Details" onclick="{!c.saveMetaDataDetails}"  disabled ="{!v.isDisabled}"/>
+                        <lightning:button variant="brand" label="{!$Label.c.IF_Reset_Button}" title="Reset Details" onclick="{!c.cancelDetails}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <aura:if isTrue="{!v.showModal}">
+        <div style="height:640px">
+            <section role="dialog" tabindex="-1" class="slds-modal slds-modal_x-small slds-fade-in-open" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Confirmation</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium slds-p-left_large" id="modal-content-id-1">
+                        <p style='margin-left:18%'>{!$Label.c.IF_SObjectChgModalMsg}</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning:button class="slds-button slds-button_brand" name='Yes' label="{!$Label.c.IF_Modal_Yes_Button}" onclick='{!c.YesMethod}'/>
+                        <lightning:button class="slds-button slds-button_brand" name='No' label="{!$Label.c.IF_Modal_No_button}" onclick='{!c.closeModal}'/>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+    
+     <aura:if isTrue="{!v.showChildModal}">
+        <div style="height:640px">
+            <section role="dialog" tabindex="-1" class="slds-modal slds-modal_x-small slds-fade-in-open" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Confirmation</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium slds-p-left_large" id="modal-content-id-1">
+                        <p style='margin-left:18%'>{!$Label.c.IF_SObjectChgModalMsg}</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning:button class="slds-button slds-button_brand" name='Yes' label="{!$Label.c.IF_Modal_Yes_Button}" onclick='{!c.YesChildMethod}'/>
+                        <lightning:button class="slds-button slds-button_brand" name='No' label="{!$Label.c.IF_Modal_No_button}" onclick='{!c.closeChildModal}'/>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+
+    <aura:if isTrue="{!v.showSysNameModal}">
+        <div style="height:640px">
+            <section role="dialog" tabindex="-1" class="slds-modal slds-modal_x-small slds-fade-in-open" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Confirmation</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium slds-p-left_large" id="modal-content-id-1">
+                        <p style='margin-left:18%'>{!$Label.c.IF_SObjectChgModalMsg}</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning:button class="slds-button slds-button_brand" name='Yes' label="{!$Label.c.IF_Modal_Yes_Button}" onclick='{!c.yesSysNameMethod}'/>
+                        <lightning:button class="slds-button slds-button_brand" name='No' label="{!$Label.c.IF_Modal_No_button}" onclick='{!c.closeSysNameModal}'/>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if> 
+    
+    
+    <aura:if isTrue="{!v.showConnectionModal}">
+        <div style="height:640px">
+            <section role="dialog" tabindex="-1" class="slds-modal slds-modal_x-small slds-fade-in-open" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Confirmation</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium slds-p-left_large" id="modal-content-id-1">
+                        <p style='margin-left:18%'>{!$Label.c.IF_SObjectChgModalMsg}</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning:button class="slds-button slds-button_brand" name='Yes' label="{!$Label.c.IF_Modal_Yes_Button}" onclick='{!c.yesConnectionMethod}'/>
+                        <lightning:button class="slds-button slds-button_brand" name='No' label="{!$Label.c.IF_Modal_No_button}" onclick='{!c.closeConnectionModal}'/>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if> 
+</aura:component>

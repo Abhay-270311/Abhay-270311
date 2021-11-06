@@ -1,0 +1,28 @@
+.ch{
+	margin-top: 15px;
+}
+.gv{
+	color :red;
+	margin-top: 10px;
+	text-align: center;
+}
+.badge{
+  color : darkcyan;
+  width: 350px;
+  padding-top: 12px;
+  padding-right: 20px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  text-size-adjust: 40px;
+}
+.pk{
+	width: 340px;
+    height: 70px;
+	margin-top: 10px;
+	padding-top: 4px;
+  	padding-right: 12px;
+  	padding-bottom: 4px;
+  	padding-left: 12px;
+	margin-bottom: 10px;
+	
+}

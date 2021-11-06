@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Lookup Component">
+        <lightning-layout vertical-align="center">
+            <lightning-layout-item size="4" padding="around-small">
+                <c-lookup if:true={showAccLookup} label="Account" options={accounts} required icon-name="standard:account" 
+                place-holder="Search Accounts" help-text="Select an account from the list" onchange={handleAccSelection}></c-lookup>
+                <br/>Selected Account Id: {selectedAccId}
+            </lightning-layout-item>
+            <lightning-layout-item size="4" padding="around-small">
+                <c-lookup if:true={showOppLookup} label="Opportunity" options={opps} icon-name="standard:opportunity"
+                place-holder="Search Opportunities" onchange={handleOppSelection}></c-lookup>
+                <br/>Selected Opportunity Id: {selectedOppId}                
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

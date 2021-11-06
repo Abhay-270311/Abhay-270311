@@ -1,0 +1,16 @@
+<template>
+    <div class="slds-m-top_medium slds-m-bottom_x-large">
+        <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+            Tree component with a many levels of depth. Click on the arrow icons to expand or collapse a branch.
+        </h2>
+        <!-- Simple -->
+        <div class="slds-m-vertical_medium">
+            <template if:true={selectedItemValue} ><div class="container">
+                <p>The selected item is: <span class="slds-text-heading_small">{selectedItemValue}</span></p>
+            </div></template>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+           <lightning-tree items={data} header="Roles" onselect={handleOnselect}></lightning-tree>
+        </div>
+    </div>
+</template>

@@ -1,3 +1,9 @@
 <template>
-    
-</template>
+    <template if:true={showbutton}>
+        <lightning-button variant="brand" label="GrandChild" title="GrandChild" onclick={handleClick}></lightning-button>
+
+    </template>
+    <template if:false={showbutton}>
+       <li>Hidden</li>
+    </template>
+    </template>

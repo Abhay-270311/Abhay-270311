@@ -1,0 +1,24 @@
+<template>
+    Hello, LWC here!!!
+    List of ToDos:
+    <template if:true={hasTodos} for:each={todosList} for:item="todo">
+        <div key={todo.id}>
+            {todo.text}
+        </div>
+    </template>
+    <lightning-input
+        label="New Todo"
+        type="text"
+        onchange={handleUpdatedText}>
+    </lightning-input>
+    <lightning-button
+        label="Add Todo"
+        title="Add a new todo"
+        onclick={handleAddTodo}>
+    </lightning-button>
+    <lightning-button
+        label="Go Next"
+        title="Finish todos, go next"
+        onclick={handleGoNext}>
+    </lightning-button>
+</template>

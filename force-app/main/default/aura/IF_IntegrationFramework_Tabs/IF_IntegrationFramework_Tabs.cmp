@@ -1,0 +1,76 @@
+<aura:component implements="force:appHostable" controller="IF_HelpGuidelines" >
+    
+    <!-- Application attribute-->
+    <aura:attribute name="selectedItem" type="String" />
+    <aura:attribute name="currentContent" type="String" />
+    <aura:attribute name="inboundGuidelines" type="String" />
+    <aura:attribute name="outboundGuidelines" type="String" /> 
+    <aura:attribute name="baseURL" type="URL" />
+    <aura:attribute name="selTabId" type="String" default="one" />
+    <aura:attribute name="selectedItemOnHelpTab" type="String" default="{!$Label.c.IF_Inbound_Guideline_Name}" />
+    
+    <div class="myContainer" style="background-color:white; border-radius:5px;">
+        <div class="demo-only">
+            <div class="slds-form slds-form_stacked">
+                <div style="background-color:#e0e8ff; border-radius:5px;" role="banner">
+                    <div class="slds-media"> 
+                        <div class="slds-media__body"> 
+                            <div class="slds-p-around_medium">
+                                <h2 style="font-size:15px !important;color:#4E78A0">
+                                    Settings Editor</h2> 
+                                <h2 style="font-size:25px !important;color:#4E78A0">
+                                    Integration Framework</h2>
+                            </div>
+                        </div> 
+                    </div>
+                </div>  
+            </div>
+        </div>
+        
+        <div class="slds-tabs_default slds-tabs_medium">
+            <lightning:tabset onselect="{!c.tabSelected}" variant="default" selectedTabId="{!v.selTabId}">
+                <lightning:tab label="{!$Label.c.IF_Inbound_Tab}" id="one">
+                    <c:IF_InboundRestAPI/>
+                </lightning:tab>
+                
+                <lightning:tab label="{!$Label.c.IF_Outbound_Tab}" id="two">
+                    <c:IF_OutboundRestAPI/>
+                </lightning:tab>
+                
+                <lightning:tab label="{!$Label.c.IF_Help_Tab}" id="three">
+                    <div>
+                        <lightning:layout>
+                            <lightning:layoutItem>
+                                <lightning:verticalNavigation onselect="{!c.handleSelect}"  class="navigation" selectedItem="{!v.selectedItemOnHelpTab}">
+                                    <lightning:verticalNavigationSection label="Integration Manager">
+                                        <lightning:verticalNavigationItem label="{!$Label.c.IF_Inbound_Tab}" name="{!$Label.c.IF_Inbound_Guideline_Name}"/>
+                                        <lightning:verticalNavigationItem label="{!$Label.c.IF_Outbound_Tab}" name="{!$Label.c.IF_Outbound_Guideline_Name}"/>
+                                    </lightning:verticalNavigationSection>
+                                </lightning:verticalNavigation>
+                            </lightning:layoutItem>
+                            
+                            <lightning:layoutItem padding="around-medium">
+                                <div style="font-size:25px">
+                                    <p>{!v.currentContent} </p>
+                                </div>
+                                <br></br>
+                                
+                                <aura:if isTrue="{!v.currentContent=='Inbound Guidelines'}">                      
+                                    <ui:outputTextArea value="{!v.inboundGuidelines}"></ui:outputTextArea> 
+                                    <aura:set attribute="else">
+                                        <ui:outputTextArea value="{!v.outboundGuidelines}"/>
+                                    </aura:set>
+                                </aura:if>
+                                
+                                <!--br></br> <br></br> 
+                                <div class="slds-text-heading_medium slds-text-align-center">
+                                    <lightning:formattedUrl value="{!v.baseURL}" label= "{!$Label.c.IF_DownloadSampleRequest}"  target="_self">Download</lightning:formattedUrl> 
+                                </div--> 
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                    </div>
+                </lightning:tab>
+            </lightning:tabset>
+        </div>
+    </div>
+</aura:component>

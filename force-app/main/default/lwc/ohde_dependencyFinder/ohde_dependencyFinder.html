@@ -1,0 +1,111 @@
+<template>
+    <lightning-card title="Dependency Finder" icon-name="custom:custom42"> 
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="2" small-device-size="6" medium-device-size="6" large-device-size="2" padding="around-small"  >
+                <template if:true={renderCB}>
+                    <div class="slds-m-left_medium">
+                        <lightning-combobox name="progress" label="Select Object"
+                            value={selectedObject} placeholder="Select Object" options={options} onchange={handleChange}>
+                        </lightning-combobox>
+                    </div>
+                </template>
+            </lightning-layout-item>
+            <template if:true={renderFieldsBox}>
+            <lightning-layout-item size="10" padding="around-small">
+                <c-show-my-toast></c-show-my-toast>
+                <c-expand-collapse-cmp show-expanded="true" show-right="true" show-left="true" title-lc="Fields">  
+                    <span slot="innerElement">
+                        <div class="slds-m-left_medium slds-scrollable" style="height:8rem;" >
+                        <lightning-layout multiple-rows>
+                            <template if:true={itemsList} for:each={itemsList} for:item="datarow">
+                                <lightning-layout-item key={datarow.itemIndex} size="12" class="slds-p-around_xx-small" small-device-size="6" medium-device-size="3" large-device-size="3" >
+                                    <div class={className} data-divid={datarow.itemIndex}>
+                                        <lightning-icon data-id={datarow.itemIndex} data-name={datarow.itemApiName} class="slds-p-right_small" variant={varianeName} onclick={handleFieldClick} size="xx-small" icon-name={iconName} alternative-text="Add"></lightning-icon>
+                                        {datarow.itemIndex}-{datarow.itemName}<br/>
+                                        <!--({datarow.itemApiName})-->
+                                    </div>
+                                </lightning-layout-item>  
+                            </template>
+                        <!--  <div class="footer-count">{cnt}</div> -->
+                        </lightning-layout> 
+                        </div>   
+                    </span>
+                </c-expand-collapse-cmp>
+            </lightning-layout-item>
+            </template>
+        </lightning-layout>       
+     <!--   <div class="slds-grid  slds-m-bottom_large">
+            <template if:true={renderCB}>
+            <div class="slds-size_1-of-6 slds-m-left_medium">
+                <lightning-combobox name="progress" label="Select Object"
+                    value={selectedObject} placeholder="Select Object" options={options} onchange={handleChange}>
+                </lightning-combobox>
+            </div>
+            </template>
+            <template if:true={renderFieldsBox}>
+           
+                <c-show-my-toast></c-show-my-toast>
+            <c-expand-collapse-cmp title-lc="Fields">  
+            <span slot="innerElement">
+                <div class="slds-m-left_medium">
+                <lightning-layout multiple-rows>
+                    <template if:true={itemsList} for:each={itemsList} for:item="datarow">
+                        <lightning-layout-item key={datarow.itemIndex} size="12" class="slds-p-around_xx-small" small-device-size="6" medium-device-size="3" large-device-size="3" >
+                            <div class={className} data-divid={datarow.itemIndex}>
+                                <lightning-icon data-id={datarow.itemIndex} data-name={datarow.itemApiName} class="slds-p-right_small" variant={varianeName} onclick={handleFieldClick} size="xx-small" icon-name={iconName} alternative-text="Add"></lightning-icon>
+                                {datarow.itemIndex}-{datarow.itemName}<br/>
+                            </div>
+                        </lightning-layout-item>  
+                    </template>
+
+                </lightning-layout> 
+                </div>   
+            </span>
+    </c-expand-collapse-cmp>  
+                              
+            </template>                
+        </div> -->
+        <div class="slds-grid" slot="footer">
+            <div class="slds-size_2-of-6 slds-m-left_medium">                    
+                <lightning-button label="Get Dependencies" onclick={handleGetDependency} variant="brand">                        
+                </lightning-button>                   
+            </div>
+        </div>
+    </lightning-card>  
+    <br/>  
+    <template if:true={showSpinner}>
+        <lightning-spinner variant="brand" alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+    <lightning-card title="Dependencies" icon-name="custom:custom15">
+        <template if:true={renderMainData}>
+            <div slot="actions">
+            <lightning-button  variant="brand" onclick={downloadCSVDetails} label="CSV" title="Download action with brand variant" icon-name="utility:download" class="slds-m-around_small"></lightning-button>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-m-left_medium">
+                    <template for:each={mainUnionData} for:item="data" >
+                        <c-expand-collapse-cmp key={data} show-right="true" show-left="true" title-lc={data.fieldName}>  
+                        <span key={data} slot="innerElement">                    
+                            <template for:each={data.fielderrors} for:item="innerData">
+                                <p key={data} class="in-margin"><b>{innerData.errType}</b></p>
+                                <p key={data} class="in-margin">{innerData.errmessages}</p>                        
+                                <p key={data} class="in-margin"></p>
+                            </template>
+                        </span>
+                        </c-expand-collapse-cmp> 
+                    </template>
+                </div>
+            </div>
+        </template>
+    </lightning-card>
+<!-- Commenting out below
+    <template for:each={mainUnionData} for:item="obj">
+        <p key={obj.fieldName}><b>{obj.fieldName}</b></p>
+        <template for:each={obj.fielderrors} for:item="objerrors">
+            <p key={obj.fieldName}><b>{objerrors.errType}</b></p>
+            <p key={obj.fieldName}>{objerrors.errmessages}</p>                        
+            <p key={obj.fieldName}></p>
+        </template>
+    </template>
+     -->
+</template>

@@ -4,10 +4,24 @@
 * Description : Test the LWC call to Apex in Imperative way
 ************************************/
 public with sharing class LWCCommonData {
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<Opportunity> getoptyData(){
         try {
-            return [ Select Id, Name, Amount, StageName, Type, CloseDate From Opportunity
+            
+            List<Opportunity> opt = [ Select Id, Name, Amount, StageName, Type, CloseDate From Opportunity
+                    WITH_SECURITY_ENFORCED];
+            System.debug('opt :: ' + opt);
+            return opt;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+        
+    } 
+    
+    @AuraEnabled(cacheable=true)
+    public static List<Account> getAcctData(){
+        try {
+            return [ Select Id, Name From Account
                     WITH_SECURITY_ENFORCED];
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());

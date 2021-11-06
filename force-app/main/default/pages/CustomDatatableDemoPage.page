@@ -1,0 +1,16 @@
+<apex:page >
+    <apex:includeLightning />
+    <div id="container">
+    </div>
+    <script>
+        $Lightning.use("c:CustomDatatableDemoApp", function () {
+            $Lightning.createComponent(
+                "c:customDatatableDemo",
+                {},
+                "container",
+                function (cmp) {
+                    console.log("component created");
+                });
+        });
+    </script>
+</apex:page>
